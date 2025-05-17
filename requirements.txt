@@ -1,0 +1,4 @@
+pyrogram
+fuzzywuzzy
+python-Levenshtein
+tgcrypto
