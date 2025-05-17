@@ -1,25 +1,5 @@
-import sys, types
-
-# ─── STUB OUT sqlite3 & its C‐extension ────────────────────────────────────────
-# This creates empty modules so that "import sqlite3" and "import _sqlite3" will
-# succeed but do nothing.
-
-# 1) stub the C‐extension _sqlite3
-sys.modules["_sqlite3"] = types.ModuleType("_sqlite3")
-
-# 2) stub the sqlite3 package
-sqlite3_stub = types.ModuleType("sqlite3")
-# make sure "from sqlite3.dbapi2 import *" doesn't explode:
-dbapi2 = types.ModuleType("sqlite3.dbapi2")
-dbapi2.__all__ = []
-# register them in sys.modules
-sys.modules["sqlite3"] = sqlite3_stub
-sys.modules["sqlite3.dbapi2"] = dbapi2
-# ─────────────────────────────────────────────────────────────────────────────
-
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.storage import MemoryStorage
 import json
 import heapq
 from thefuzz import fuzz
@@ -100,7 +80,7 @@ api_id = os.getenv("API_ID")
 api_hash = os.getenv("API_HASH")
 bot_token = os.getenv("BOT_TOKEN")
 
-app = Client("hifimusic_bot", storage=MemoryStorage(), api_id=api_id, api_hash=api_hash, bot_token=bot_token)
+app = Client("hifimusic_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 ids = []
 channel_id = os.getenv("CHANNEL_ID")
 @app.on_message(filters.command("hifi"))

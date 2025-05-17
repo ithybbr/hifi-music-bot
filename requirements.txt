@@ -2,3 +2,5 @@ pyrogram==2.0.106
 thefuzz==0.22.1
 python-dotenv==0.19.2
 tgcrypto==1.2.5
+pysqlite3
+pysqlite3-binary
