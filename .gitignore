@@ -1,1 +1,3 @@
-apis
+.env
+hifimusic_bot.session
+hifimusic_bot.session-journal

@@ -3,7 +3,10 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import json
 import heapq
 from thefuzz import fuzz
-import os   
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 class MaxPriorityQueue:
     def __init__(self):
         self._queue = []
@@ -76,13 +79,13 @@ def message_search_all(input):
         found_ids.add(song_id)
     return found_ids
 # Define the Pyrogram client
-api_id = os.getenv("API_ID")
-api_hash = os.getenv("API_HASH")
-bot_token = os.getenv("BOT_TOKEN")
+api_id = os.environ['API_ID']
+api_hash = os.environ['API_HASH']
+bot_token = os.environ['BOT_TOKEN']
 
 app = Client("hifimusic_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 ids = []
-channel_id = os.getenv("CHANNEL_ID")
+channel_id = os.environ['CHANNEL_ID']
 @app.on_message(filters.command("hifi"))
 async def send_song(client, message):
     # Extract the song ID from the user's message
@@ -147,6 +150,3 @@ async def handle_callback_query(client, callback_query):
 
 if __name__ == "__main__":
     app.run()
-
-
-
